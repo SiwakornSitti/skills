@@ -3,13 +3,13 @@
 This document outlines the requirements and best practices for creating Docker images for the Go applications in this project.
 
 ## Contents
-- 1. Multi-Stage Builds
-- 2. Compilation Flags
-- 3. Security and Privileges
-- 4. Signal Handling (No Tini Needed)
-- 5. Managing Dependencies
-- 6. Example Dockerfile
-- 7. Handling Multiple Commands (Multiple Binaries)
+- [1. Multi-Stage Builds](#1-multi-stage-builds)
+- [2. Compilation Flags](#2-compilation-flags)
+- [3. Security and Privileges](#3-security-and-privileges)
+- [4. Signal Handling (No Tini Needed)](#4-signal-handling-no-tini-needed)
+- [5. Managing Dependencies](#5-managing-dependencies)
+- [6. Example Dockerfile](#6-example-dockerfile)
+- [7. Handling Multiple Commands (Multiple Binaries)](#7-handling-multiple-commands-multiple-binaries)
 
 ## 1. Multi-Stage Builds
 

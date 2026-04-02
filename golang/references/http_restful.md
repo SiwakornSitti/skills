@@ -1,11 +1,11 @@
 # HTTP RESTful API Design
 
 ## Contents
-- 1. Naming & Methods
-- 2. Query Parameters for GET Requests
-- 3. Idempotency Keys
-- 4. HTTP Status Codes
-- 5. Response Format
+- [1. Naming & Methods](#1-naming--methods)
+- [2. Query Parameters for GET Requests](#2-query-parameters-for-get-requests)
+- [3. Idempotency Keys](#3-idempotency-keys)
+- [4. HTTP Status Codes](#4-http-status-codes)
+- [5. Response Format](#5-response-format)
 
 ## 1. Naming & Methods
 
