@@ -60,14 +60,14 @@ To ensure `POST` requests are idempotent (e.g., creating a payment or placing an
 
 ## 5. Response Format
 
-- **JSON First:** Use `application/json` as the default `Content-Type` for both requests and responses.
-- **Key Casing:** Use `camelCase` for all JSON keys.
-- **Collections & Pagination:** When returning a collection of resources, always wrap the results in a `data` array and include a `meta` object containing the current state of pagination and sorting.
-- **Errors:** Standardize error responses by wrapping details in an `error` object. This provides clear, parseable feedback to the client without exposing internal stack traces.
+- **JSON First**: Use `application/json` as the default `Content-Type`.
+- **Key Casing**: Use `camelCase` for all JSON keys.
+- **Envelope Pattern**: All successful responses must be wrapped in a top-level `data` object.
+- **Error Responses**: Error responses must be flat, containing a `code` and an optional `details` array. Do not use generic messages or nested wrappers.
 
 ### Examples
 
-**Example Collection Response:**
+**Example Successful Collection Response:**
 
 ```json
 {
@@ -76,38 +76,25 @@ To ensure `POST` requests are idempotent (e.g., creating a payment or placing an
       "id": "123",
       "status": "active",
       "createdAt": "2026-03-30T10:00:00Z"
-    },
-    {
-      "id": "124",
-      "status": "active",
-      "createdAt": "2026-03-30T09:00:00Z"
     }
   ],
   "meta": {
     "limit": 50,
-    "offset": 0,
-    "total": 100,
-    "nextCursor": "eyJpZCI6MTI0fQ==",
-    "prevCursor": null,
-    "sort": "createdAt",
-    "direction": "desc"
+    "total": 100
   }
 }
 ```
 
-**Example Error Response:**
+**Example Flat Error Response:**
 
 ```json
 {
-  "error": {
-    "code": "invalid_request",
-    "message": "The provided input is invalid.",
-    "details": [
-      {
-        "field": "email",
-        "issue": "Must be a valid email address."
-      }
-    ]
-  }
+  "code": "invalid_email_format",
+  "details": [
+    {
+      "field": "email",
+      "reason": "Must be a valid email address."
+    }
+  ]
 }
 ```
