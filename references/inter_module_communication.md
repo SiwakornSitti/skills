@@ -2,6 +2,12 @@
 
 This document defines how different features (modules) within the `/internal` directory should interact and share data.
 
+## Contents
+- 1. Principles
+- 2. Communication Strategies
+- 3. Example: Account needing Customer Name
+- 4. Handling Bi-Directional Dependencies (Circular Imports)
+
 ## 1. Principles
 
 - **Avoid Circular Dependencies:** Features **must not** import each other in a way that creates a circular dependency.

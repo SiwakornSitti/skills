@@ -2,6 +2,15 @@
 
 This document outlines the requirements and best practices for creating Docker images for the Go applications in this project.
 
+## Contents
+- 1. Multi-Stage Builds
+- 2. Compilation Flags
+- 3. Security and Privileges
+- 4. Signal Handling (No Tini Needed)
+- 5. Managing Dependencies
+- 6. Example Dockerfile
+- 7. Handling Multiple Commands (Multiple Binaries)
+
 ## 1. Multi-Stage Builds
 
 All `Dockerfile`s **must** use multi-stage builds. This ensures that the final production image is as small and secure as possible, containing only the compiled binary and necessary runtime assets.
@@ -26,9 +35,15 @@ When compiling the Go binary in the builder stage, use flags to optimize the out
 
 Unlike Node.js or Python applications, a statically compiled Go binary running as PID 1 handles OS signals (like `SIGTERM` and `SIGINT`) natively and correctly.
 
-- **No `tini` or `dumb-init`:** You do **not** need an init process wrapper like `tini` when running a compiled Go binary in a Docker container, provided your application implements graceful shutdown logic properly (see [Graceful Shutdown](graceful_shutdown.md)).
+- **No `tini` or `dumb-init`:** You do **not** need an init process wrapper like `tini` when running a compiled Go binary in a Docker container, provided your application implements graceful shutdown logic properly (see the Web Server Configuration guide).
 
-## 5. Caching Dependencies
+## 5. Managing Dependencies
+
+### 5.1 System Dependencies (Custom Base Images)
+
+If your image requires external system dependencies (e.g., C libraries, specific CLI tools, or OS packages via `apt-get` / `apk`), **prefer creating a custom base Docker image** that has these dependencies pre-installed. Do not download and install them on every application build. This drastically reduces build times, avoids network-related build failures, and ensures deterministic builds.
+
+### 5.2 Go Modules Layer Caching
 
 Optimize build times by leveraging Docker layer caching for Go modules. Copy `go.mod` and `go.sum` and run `go mod download` *before* copying the rest of the source code.
 

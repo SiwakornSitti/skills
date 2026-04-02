@@ -4,7 +4,7 @@ This document outlines the best practices for implementing asynchronous event st
 
 ## 1. General Principles
 
-- **Event-Driven Architecture:** Use Kafka for decoupled, asynchronous inter-module communication (as outlined in [Inter-Module Communication](inter_module_communication.md)).
+- **Event-Driven Architecture:** Use Kafka for decoupled, asynchronous inter-module communication (as outlined in the Inter-Module Communication guide).
 - **Library Choice:** Use `github.com/IBM/sarama` for full-featured Kafka integration.
 - **Idempotency:** Because Kafka guarantees "at-least-once" delivery by default, all consumer logic **must** be idempotent. Processing the exact same message twice must yield the same system state as processing it once.
 

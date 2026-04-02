@@ -1,6 +1,11 @@
-# Go Application Development Guidelines (Backend Development Guidelines)
+---
+name: developing-go-applications
+description: Provides guidelines, architectural patterns, and coding rules for building scalable, maintainable, and secure Go applications. Use when writing, reviewing, or refactoring Go backend code.
+---
 
-Welcome to the central hub for Go application development standards. This repository of knowledge outlines the best practices, architectural patterns, and coding rules required to build scalable, maintainable, and secure Go applications in this project.
+# Go Application Development Guidelines
+
+Central guidelines for Go backend development standards, architectural patterns, and coding rules. Use these resources to build scalable, maintainable, and secure Go applications.
 
 ## 1. Guiding Principles
 
@@ -48,9 +53,9 @@ Ensure the application is robust, secure, and predictable.
 
 Keep the application running smoothly in production environments.
 
-- 🐳 **[Docker & Containerization](references/docker.md):** Best practices for multi-stage builds, compiling static binaries (`CGO_ENABLED=0`), and running as a non-root user.
+- 🐳 **[Docker & Containerization](references/docker.md):** Best practices for multi-stage builds, custom base images for dependencies, compiling static binaries (`CGO_ENABLED=0`), running as a non-root user, and optimizing image size.
 - ☸️ **[Kubernetes Readiness](references/kubernetes.md):** Requirements for health checks, resource limits, and graceful shutdowns to ensure smooth orchestration.
-- �🔭 **[Observability](references/observability.md):** Standards for OpenTelemetry distributed tracing, LETS metrics, structured logging, and strict PII data redaction.
+- 🔭 **[Observability](references/observability.md):** Standards for OpenTelemetry distributed tracing, LETS metrics, structured logging, and strict PII data redaction.
 
 
 ## 7. Coding Standards

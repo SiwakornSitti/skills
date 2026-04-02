@@ -8,7 +8,7 @@ This document outlines the best practices for managing application configuration
   - **Strict separation of config from code:** Config varies substantially across deploys, code does not.
   - **Environment Agnostic Code:** The same compiled binary can run in Dev, QA, and Prod just by swapping the environment variables.
   - **No Configuration Files in Container:** Do not bake config files into the Docker image; instead, rely on Kubernetes ConfigMaps or Secrets to inject the environment at runtime.
-- **Fail Fast:** As defined in [Web Server Configuration](web_server.md), validate all required configuration parameters during application startup. If a required variable is missing or malformed, the application must crash immediately.
+- **Fail Fast:** As defined in the Web Server Configuration guide, validate all required configuration parameters during application startup. If a required variable is missing or malformed, the application must crash immediately.
 - **No Hardcoded Secrets:** Never hardcode passwords, API keys, or sensitive URLs in the source code or default configuration files.
 
 ## 2. Configuration Tools

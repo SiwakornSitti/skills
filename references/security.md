@@ -47,4 +47,4 @@ This document outlines the security best practices for Go application developmen
 
 ## 7. Error Handling
 
-- **No Information Leaks:** As defined in [Error Handling](error_handling.md), never leak internal implementation details or stack traces to the client in error responses (especially 5xx).
+- **No Information Leaks:** As defined in the Error Handling guide, never leak internal implementation details or stack traces to the client in error responses (especially 5xx).

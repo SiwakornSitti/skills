@@ -1,5 +1,12 @@
 # HTTP RESTful API Design
 
+## Contents
+- 1. Naming & Methods
+- 2. Query Parameters for GET Requests
+- 3. Idempotency Keys
+- 4. HTTP Status Codes
+- 5. Response Format
+
 ## 1. Naming & Methods
 
 - **Resource-Based Naming:** Use plural nouns for resources (e.g., `/users`, `/orders`). Avoid using verbs in URLs (e.g., avoid `/getUsers`).
