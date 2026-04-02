@@ -1,0 +1,13 @@
+repos:
+  - repo: local
+    hooks:
+      - id: golang-lint
+        name: Lint Go
+        entry: make -C golang lint
+        language: system
+        types: [go]
+      - id: golang-test
+        name: Test Go
+        entry: make -C golang test
+        language: system
+        types: [go]
