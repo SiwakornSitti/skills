@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-lint",
+    "evals": [
+        {
+            "id": 1,
+            "name": "fix-boundary-lint",
+            "prompt": "Configure golangci-lint with depguard to ensure internal/core cannot import internal/adapter packages.",
+            "expected_output": "A .golangci.yml configuration with depguard rules enforcing architectural boundaries.",
+            "files": [],
+            "assertions": [
+                "Configures depguard linter in .golangci.yml.",
+                "Specifies rule preventing core/domain packages from importing adapter packages.",
+                "Provides clear violation error message."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "resolve-lint-without-nolint",
+            "prompt": "A linter warns about unhandled error from defer resp.Body.Close(). Fix it properly without using //nolint.",
+            "expected_output": "Idiomatic error handling in defer (e.g. named return error wrapping or explicit error check).",
+            "files": [],
+            "assertions": [
+                "Resolves error without adding //nolint suppression directive.",
+                "Checks error and combines with return error if applicable.",
+                "Preserves clean code quality standards."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "pre-commit-lint-pipeline",
+            "prompt": "Set up a git pre-commit hook that runs golangci-lint only on modified Go files before commit.",
+            "expected_output": "A pre-commit configuration or shell hook executing golangci-lint run against staged files.",
+            "files": [],
+            "assertions": [
+                "Targets staged .go files to keep commit times fast.",
+                "Aborts commit if lint errors are detected.",
+                "Integrates with repository Makefile or .pre-commit-config.yaml."
+            ]
+        }
+    ]
+}

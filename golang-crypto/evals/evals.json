@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-crypto",
+    "evals": [
+        {
+            "id": 1,
+            "name": "password-storage",
+            "prompt": "Implement user password hashing and verification in Go.",
+            "expected_output": "Secure implementation using Argon2id or bcrypt with random salt and timing-safe comparison.",
+            "files": [],
+            "assertions": [
+                "Uses modern password hashing (Argon2id or bcrypt) instead of plain SHA/MD5.",
+                "Generates cryptographically random salt using crypto/rand.",
+                "Verification is constant-time and prevents password disclosure."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "aes-gcm-encryption",
+            "prompt": "Encrypt sensitive customer data at rest before saving to database columns.",
+            "expected_output": "Authenticated symmetric encryption using AES-GCM with unique nonce generated per encryption.",
+            "files": [],
+            "assertions": [
+                "Uses AES-GCM (crypto/cipher.NewGCM).",
+                "Generates a new, cryptographically secure nonce for every encryption.",
+                "Prepends or stores nonce alongside ciphertext for decryption."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "constant-time-comparison",
+            "prompt": "Validate an API webhook signature or HMAC token in Go.",
+            "expected_output": "Verification using subtle.ConstantTimeCompare or hmac.Equal to prevent timing attacks.",
+            "files": [],
+            "assertions": [
+                "Uses subtle.ConstantTimeCompare or hmac.Equal for digest comparison.",
+                "Avoids standard '==' string comparison on cryptographic secrets.",
+                "Returns boolean validity without leaking character matching timings."
+            ]
+        }
+    ]
+}

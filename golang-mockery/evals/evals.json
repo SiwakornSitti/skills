@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-mockery",
+    "evals": [
+        {
+            "id": 1,
+            "name": "generate-port-mock",
+            "prompt": "Configure .mockery.yaml to generate mocks for UserRepository in internal/user/domain/port.",
+            "expected_output": "A .mockery.yaml entry configuring mock generation with correct package and directory targets.",
+            "files": [],
+            "assertions": [
+                "Target interface matches domain port name.",
+                "Configures output directory to test support or mocks folder.",
+                "Configures inpackage: false to keep production code free of mocks."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "testify-mock-expectations",
+            "prompt": "Write a unit test for a user registration usecase using a Mockery-generated UserRepository mock.",
+            "expected_output": "Unit test using On(...).Return(...) expectations and verifying with AssertExpectations.",
+            "files": [],
+            "assertions": [
+                "Sets up expected method calls and return values using mock.On().Return().",
+                "Uses mock.MatchedBy or specific argument values.",
+                "Calls mock.AssertExpectations(t) to ensure all calls occurred."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "mock-package-placement",
+            "prompt": "Where should generated mocks live in a hexagonal Go project?",
+            "expected_output": "Guidance placing mocks in internal/testsupport/mocks or adapter mocks package, never in domain core.",
+            "files": [],
+            "assertions": [
+                "Mocks are strictly isolated from domain core packages.",
+                "Domain core does not import testify or mock packages.",
+                "Mocks are imported only in _test.go files."
+            ]
+        }
+    ]
+}

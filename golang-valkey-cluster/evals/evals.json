@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-valkey-cluster",
+    "evals": [
+        {
+            "id": 1,
+            "name": "cluster-safe-multikey",
+            "prompt": "Perform a multi-key MGET or transaction in a Valkey Cluster environment without triggering CROSSSLOT errors.",
+            "expected_output": "Using hash tags '{tenant_id}:key' to ensure multi-key operations land on the exact same cluster hash slot.",
+            "files": [],
+            "assertions": [
+                "Uses Valkey hash tags (curly braces) in key naming (e.g. '{tenant1}:profile' and '{tenant1}:settings').",
+                "Guarantees that related keys hash to the identical slot.",
+                "Prevents CROSSSLOT Keys in request don't hash to the same slot error."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "handle-cluster-redirection",
+            "prompt": "How does valkey-go handle MOVED and ASK redirection errors during cluster slot migration?",
+            "expected_output": "Explanation and configuration of valkey-go automatic routing and topology refresh.",
+            "files": [],
+            "assertions": [
+                "Configures valkey-go cluster client with initial seed addresses.",
+                "Explains that valkey-go handles MOVED redirection by updating internal slot routing table.",
+                "Explains that ASK redirection is transparently handled with ASKING command to target node."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "cluster-topology-refresh",
+            "prompt": "A master node in a Valkey cluster fails and a replica is promoted. How does the Go client maintain availability?",
+            "expected_output": "Configuring periodic and on-error cluster topology refresh in valkey-go.",
+            "files": [],
+            "assertions": [
+                "Enables automatic topology refresh in cluster client options.",
+                "Refreshes slot mapping when connection errors or redirections occur.",
+                "Maintains request availability during node failover."
+            ]
+        }
+    ]
+}

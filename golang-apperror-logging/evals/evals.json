@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-apperror-logging",
+    "evals": [
+        {
+            "id": 1,
+            "name": "log-once-at-boundary",
+            "prompt": "A database query fails inside a repository. Show how error wrapping and logging should occur across repository, usecase, and HTTP handler layers.",
+            "expected_output": "Inner layers wrap the error without logging; only the HTTP handler logs once with structured slog attributes.",
+            "files": [],
+            "assertions": [
+                "Repository wraps driver error with context and does not invoke logger.",
+                "Usecase returns domain error or wraps without logging.",
+                "HTTP handler logs exactly once at ERROR level with structured slog attributes and returns clean error response."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "redact-sensitive-error-attrs",
+            "prompt": "An authentication error occurs containing a user password and auth token. Show how to log this error safely with slog.",
+            "expected_output": "Structured log output that records error classification while masking or omitting passwords, tokens, and PII.",
+            "files": [],
+            "assertions": [
+                "Passwords, secrets, and raw authentication tokens are excluded from log attributes.",
+                "Structured attributes include safe correlation IDs like user_id or request_id.",
+                "The logged error does not expose credential values in message or stack trace."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "classify-apperror-codes",
+            "prompt": "Map a domain 'EntityNotFound' error to an AppError and HTTP response.",
+            "expected_output": "Conversion of domain error to an AppError with code NOT_FOUND, HTTP status 404, and user-safe message.",
+            "files": [],
+            "assertions": [
+                "Uses pkg/apperror or equivalent structured application error type.",
+                "Maps domain not found to HTTP 404 with a specific error code.",
+                "Internal database identifiers and stack traces are suppressed from client response."
+            ]
+        }
+    ]
+}

@@ -1,0 +1,41 @@
+{
+    "skill_name": "twelve-factor",
+    "evals": [
+        {
+            "id": 1,
+            "name": "operate-go-service",
+            "prompt": "Review a Go service that hardcodes database host in code, writes logs to a local file, and keeps session state in memory.",
+            "expected_output": "A 12-factor review covering config in environment (III), stateless processes (VI), and logs to stdout (XI).",
+            "files": [],
+            "assertions": [
+                "Moves all configuration to environment variables (Factor III).",
+                "Externalizes session state to Redis/DB to maintain stateless processes (Factor VI).",
+                "Redirects application logging to stdout as unbuffered event stream (Factor XI)."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "stateless-process-boundary",
+            "prompt": "Design horizontal scaling for a Go API where multiple instances handle client requests behind a load balancer.",
+            "expected_output": "Ensuring zero local disk or in-memory dependency between requests so any server can handle any request.",
+            "files": [],
+            "assertions": [
+                "Process shares nothing and stores persistent data in backing services (Factor VI).",
+                "Scaling is achieved by running multiple concurrent process instances (Factor VIII).",
+                "Instance restarts or terminations have zero impact on other requests."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "graceful-sigterm-shutdown",
+            "prompt": "Implement graceful process termination in Go to comply with Factor IX (Disposability).",
+            "expected_output": "Handling SIGTERM by stopping listener, allowing active requests to finish within timeout, and closing backing pools.",
+            "files": [],
+            "assertions": [
+                "Traps SIGTERM and SIGINT signals cleanly.",
+                "Calls http.Server.Shutdown(ctx) with timeout to finish in-flight requests.",
+                "Closes database connections and release resources before process exit."
+            ]
+        }
+    ]
+}

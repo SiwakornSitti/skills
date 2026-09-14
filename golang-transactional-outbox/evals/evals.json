@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-transactional-outbox",
+    "evals": [
+        {
+            "id": 1,
+            "name": "atomic-event-write",
+            "prompt": "Save an updated order entity and emit an OrderCreated outbox event atomically.",
+            "expected_output": "A single database transaction writing the order record and inserting into the outbox table.",
+            "files": [],
+            "assertions": [
+                "Order insert and outbox event insert execute within the same database transaction.",
+                "If either insert fails, the entire transaction rolls back.",
+                "Outbox record includes event payload, aggregate_id, event_type, and status='pending'."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "outbox-relay-worker",
+            "prompt": "Implement a background relay worker that polls pending outbox events and publishes them to Kafka.",
+            "expected_output": "Poller query using SELECT ... FOR UPDATE SKIP LOCKED, batch publishing, and marking published.",
+            "files": [],
+            "assertions": [
+                "Uses SELECT ... FOR UPDATE SKIP LOCKED to allow multiple concurrent pollers.",
+                "Publishes event batch to message broker.",
+                "Updates outbox status to 'published' (or deletes) only after broker ack."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "idempotent-outbox-publishing",
+            "prompt": "A network error occurs after publishing an outbox event to Kafka but before updating the outbox table status.",
+            "expected_output": "Explanation of at-least-once delivery guarantee and downstream consumer deduplication.",
+            "files": [],
+            "assertions": [
+                "Recognizes that outbox pattern guarantees at-least-once delivery.",
+                "Retries publishing on relay failure without dropping events.",
+                "Ensures event payloads carry unique event_id for downstream consumer deduplication."
+            ]
+        }
+    ]
+}

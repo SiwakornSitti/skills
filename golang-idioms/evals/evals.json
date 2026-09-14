@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-idioms",
+    "evals": [
+        {
+            "id": 1,
+            "name": "simplify-go-api",
+            "prompt": "Refactor a bloated interface with 15 methods into idiomatic consumer-driven Go interfaces.",
+            "expected_output": "Small, single-method or focused interfaces defined by the consumer package.",
+            "files": [],
+            "assertions": [
+                "Interfaces are split into small, cohesive interfaces (1-3 methods).",
+                "Interfaces are defined where they are used (consumer side).",
+                "Names follow Go convention (Reader, Writer, Closer or clear verb-based names)."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "happy-path-control-flow",
+            "prompt": "Refactor deeply nested if-else statements validating a user request into idiomatic Go guard clauses.",
+            "expected_output": "Flat control flow with early returns on errors keeping the happy path left-aligned.",
+            "files": [],
+            "assertions": [
+                "Errors are checked immediately with early return.",
+                "Eliminates nested else branches.",
+                "Happy path execution remains at minimal indentation level."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "pointer-vs-value-semantics",
+            "prompt": "Choose receiver types for a Money value object vs an Account aggregate with mutating methods.",
+            "expected_output": "Value receivers for immutable Money struct; pointer receivers for mutating Account aggregate.",
+            "files": [],
+            "assertions": [
+                "Money uses value receiver (func (m Money) Add(o Money) Money).",
+                "Account uses pointer receiver (func (a *Account) Withdraw(...)).",
+                "Maintains consistency across all methods of each type."
+            ]
+        }
+    ]
+}

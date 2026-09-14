@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-generics",
+    "evals": [
+        {
+            "id": 1,
+            "name": "bounded-generic-helper",
+            "prompt": "Implement a generic Map and Filter utility function for slices with type constraints.",
+            "expected_output": "Clean, type-safe slice helper functions using [T any] and constraints.",
+            "files": [],
+            "assertions": [
+                "Generic function signatures use idiomatic type parameters [T, R any].",
+                "Pre-allocates slice capacity based on input slice length.",
+                "Preserves type safety without runtime reflection or interface{} casting."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "generic-collection",
+            "prompt": "Implement a generic Set[T comparable] with Add, Contains, and ToSlice methods.",
+            "expected_output": "Type-safe Set struct parameterized on comparable with methods.",
+            "files": [],
+            "assertions": [
+                "Constrains element type to comparable.",
+                "Backs set with map[T]struct{} to avoid memory overhead.",
+                "Methods operate safely on the generic type."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "avoid-overusing-generics",
+            "prompt": "Review a proposal to create a GenericRepository[T any] interface implemented across all bounded contexts.",
+            "expected_output": "Critique advising against generic domain repositories; recommending explicit domain-specific repository interfaces.",
+            "files": [],
+            "assertions": [
+                "Explains that generic CRUD repositories obscure domain language and specific query requirements.",
+                "Advocates for consumer-driven interfaces tailored to each domain aggregate.",
+                "Clarifies that generics are best suited for data structures and utility algorithms, not domain contracts."
+            ]
+        }
+    ]
+}

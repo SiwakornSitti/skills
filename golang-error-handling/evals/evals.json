@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-error-handling",
+    "evals": [
+        {
+            "id": 1,
+            "name": "wrap-and-classify",
+            "prompt": "A database query fails with ErrNoRows. Wrap it with repository context and classify it as a domain ErrNotFound.",
+            "expected_output": "Domain sentinel error definition and fmt.Errorf wrapping using %w to preserve cause.",
+            "files": [],
+            "assertions": [
+                "Defines or returns a sentinel ErrNotFound error value.",
+                "Wraps underlying error with fmt.Errorf and '%w' verb.",
+                "Adds meaningful operation context (e.g. 'finding user by id %s')."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "errors-is-as-matching",
+            "prompt": "Inspect an error returned from a service layer to check if it represents a validation error or a network timeout.",
+            "expected_output": "Error inspection using errors.Is for sentinels and errors.As for custom struct error extraction.",
+            "files": [],
+            "assertions": [
+                "Uses errors.Is to check for sentinel errors.",
+                "Uses errors.As to unwrap custom structured error types.",
+                "Avoids string matching on error.Error() content."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "prevent-raw-error-leak",
+            "prompt": "A raw PostgreSQL driver connection error occurs during an API request. What should be returned to the client?",
+            "expected_output": "Sanitized application error masking internal DB details and returning a generic internal server error message.",
+            "files": [],
+            "assertions": [
+                "Raw database connection string or driver error is omitted from client payload.",
+                "Logs root cause internally with trace ID.",
+                "Client receives standardized HTTP 500 error code with reference trace ID."
+            ]
+        }
+    ]
+}

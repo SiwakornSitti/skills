@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-modernize",
+    "evals": [
+        {
+            "id": 1,
+            "name": "evidence-based-upgrade",
+            "prompt": "Update older Go code that uses math.Min/Max on ints, interface{} assertions, and manual error slicing.",
+            "expected_output": "Modern Go idioms using built-in min/max, any alias, and errors.Join.",
+            "files": [],
+            "assertions": [
+                "Replaces math.Min/Max int conversions with built-in min/max.",
+                "Replaces interface{} with any where appropriate.",
+                "Uses errors.Join for combining multiple errors."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "replace-deprecated-libraries",
+            "prompt": "Modernize Go code that still imports io/ioutil for ReadAll and TempFile.",
+            "expected_output": "Replacement with io.ReadAll, os.ReadFile, and os.CreateTemp.",
+            "files": [],
+            "assertions": [
+                "Removes io/ioutil import completely.",
+                "Uses io.ReadAll or os.ReadFile as drop-in modern replacements.",
+                "Uses os.CreateTemp instead of ioutil.TempFile."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "verify-upgrade-compatibility",
+            "prompt": "After bumping go directive in go.mod to 1.24, verify the codebase for breaking changes and deprecations.",
+            "expected_output": "Verification workflow running go mod tidy, go test ./..., and golangci-lint.",
+            "files": [],
+            "assertions": [
+                "Runs go mod tidy to update dependency checksums.",
+                "Runs complete test suite with race detector.",
+                "Verifies build constraints and compiler compatibility flags."
+            ]
+        }
+    ]
+}

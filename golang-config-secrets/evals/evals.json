@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-config-secrets",
+    "evals": [
+        {
+            "id": 1,
+            "name": "typed-config-overlay",
+            "prompt": "Load configuration for HTTP port, DB connection, and Redis host with default fallback and environment variable overrides.",
+            "expected_output": "A strongly typed Config struct parsed from environment variables with sensible defaults.",
+            "files": [],
+            "assertions": [
+                "Config is represented as a strongly typed struct.",
+                "Defaults are applied when environment variables are unset.",
+                "Environment variables override defaults correctly."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "mask-secrets-in-output",
+            "prompt": "Implement a String() method for the DatabaseConfig struct containing username, password, and host.",
+            "expected_output": "String representation that masks the password field (e.g. '***' or '[REDACTED]').",
+            "files": [],
+            "assertions": [
+                "Implements fmt.Stringer interface.",
+                "Password and sensitive credentials are fully masked in the formatted string.",
+                "Host and port remain visible for diagnostic purposes."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "fail-fast-validation",
+            "prompt": "Validate service configuration during application startup before binding network listeners.",
+            "expected_output": "Startup validation returning clear, combined errors for any missing required configuration.",
+            "files": [],
+            "assertions": [
+                "Validates required fields (e.g. database URL, secret keys) before boot.",
+                "Aggregates missing variable errors into a clear startup failure message.",
+                "Process exits with non-zero code if critical configuration is invalid."
+            ]
+        }
+    ]
+}

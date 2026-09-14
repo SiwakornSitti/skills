@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-documentation",
+    "evals": [
+        {
+            "id": 1,
+            "name": "document-exported-api",
+            "prompt": "Write package and function comments for an exported PaymentService interface and Process method.",
+            "expected_output": "Idiomatic Go doc comments starting with symbol name and explaining behavior, errors, and concurrency guarantees.",
+            "files": [],
+            "assertions": [
+                "Package comment introduces package purpose at the top of doc.go or main file.",
+                "Function comments begin with the name of the symbol (e.g. '// Process executes...').",
+                "Documents context cancellation and returned error conditions."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "runnable-testable-example",
+            "prompt": "Add a runnable godoc example for a custom slugify string utility function.",
+            "expected_output": "An ExampleSlugify() function in a _test.go file with an '// Output:' assertion comment.",
+            "files": [],
+            "assertions": [
+                "Example function is named following Go conventions (e.g. ExampleSlugify).",
+                "Includes an '// Output:' comment matching expected stdout.",
+                "Compiles and passes under go test."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "document-architecture-boundaries",
+            "prompt": "Document hexagonal architecture layer rules for new developers in the repository README.",
+            "expected_output": "Clear architectural guide covering inbound adapters, core domain, and outbound ports.",
+            "files": [],
+            "assertions": [
+                "Clearly explains dependency inversion and port/adapter responsibilities.",
+                "Provides directory layout mapping to architectural concepts.",
+                "Lists forbidden import paths (e.g. core importing adapters)."
+            ]
+        }
+    ]
+}

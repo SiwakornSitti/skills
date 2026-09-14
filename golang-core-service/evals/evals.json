@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-core-service",
+    "evals": [
+        {
+            "id": 1,
+            "name": "own-business-invariant",
+            "prompt": "Implement a bank account withdrawal capability ensuring balance cannot drop below zero.",
+            "expected_output": "Domain entity method enforcing the balance invariant and returning domain-specific InsufficientFunds error.",
+            "files": [],
+            "assertions": [
+                "Business invariant is checked and enforced inside the domain model.",
+                "Returns custom domain error when invariant is violated.",
+                "Does not import HTTP, database driver, or serialization packages."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "domain-port-inversion",
+            "prompt": "Define the persistence contract for a User entity in hexagonal architecture.",
+            "expected_output": "UserRepository interface defined in the domain/core package, tailored to domain needs.",
+            "files": [],
+            "assertions": [
+                "Interface is defined in the domain/core layer and accepted by usecase constructors.",
+                "Methods accept and return domain entities and domain error types.",
+                "Database technology details (SQL, pgx, Redis) are completely absent from the port."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "infrastructure-isolation",
+            "prompt": "Review a proposed core service method that receives an *http.Request and *sql.Tx directly.",
+            "expected_output": "Refactoring that extracts HTTP parameters into plain domain command struct and moves transaction to UoW adapter.",
+            "files": [],
+            "assertions": [
+                "Replaces *http.Request with a pure domain DTO or command object.",
+                "Replaces *sql.Tx with domain UnitOfWork or repository abstraction.",
+                "Core package remains 100% free of external protocol and driver imports."
+            ]
+        }
+    ]
+}

@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-consumer",
+    "evals": [
+        {
+            "id": 1,
+            "name": "at-least-once-handler",
+            "prompt": "Implement a Kafka/RabbitMQ message consumer handler ensuring idempotent processing for user payment events.",
+            "expected_output": "A consumer handler that checks message deduplication store before applying business changes.",
+            "files": [],
+            "assertions": [
+                "Uses message ID or idempotency key to detect duplicate deliveries.",
+                "Acks/commits message offset only after successful processing and persistence.",
+                "Maintains idempotency even when message is delivered multiple times."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "retry-and-dead-letter",
+            "prompt": "A consumer encounters a deserialization error vs a transient database timeout. How should each be handled?",
+            "expected_output": "Immediate DLQ routing for deserialization failure; retry with backoff for transient DB error.",
+            "files": [],
+            "assertions": [
+                "Fatal/unrecoverable errors bypass retries and route directly to Dead Letter Queue.",
+                "Transient errors trigger bounded retry with exponential backoff.",
+                "Prevents poison-pill messages from blocking the entire consumer partition."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "graceful-shutdown-drain",
+            "prompt": "Handle OS interrupt (SIGTERM) in a Go consumer to drain in-flight messages cleanly.",
+            "expected_output": "Consumer loop that halts new message fetching, waits for in-flight handlers with sync.WaitGroup, and exits within deadline.",
+            "files": [],
+            "assertions": [
+                "Listens for SIGINT/SIGTERM via signal.NotifyContext.",
+                "Stops fetching new messages and waits for active worker goroutines to complete.",
+                "Enforces a graceful shutdown deadline before forcing exit."
+            ]
+        }
+    ]
+}

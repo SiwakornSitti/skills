@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-bff",
+    "evals": [
+        {
+            "id": 1,
+            "name": "compose-client-view",
+            "prompt": "Compose a web and mobile profile response from user and account core-service data when the clients need the same fields.",
+            "expected_output": "A client-facing composition that keeps domain ownership in core services and avoids duplicating business rules.",
+            "files": [],
+            "assertions": [
+                "The BFF owns response shaping and orchestration only.",
+                "Core services remain owners of user and account invariants.",
+                "Latency budgets and partial upstream failure behavior are stated."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "graceful-degradation-partial-failure",
+            "prompt": "The BFF aggregates user profile, account balances, and promotional offers. The promotions service times out. How should the BFF respond?",
+            "expected_output": "Partial success response returning user profile and account balances with empty or fallback promotions.",
+            "files": [],
+            "assertions": [
+                "Non-critical service failure does not cause HTTP 500 for the whole request.",
+                "Returns HTTP 200 with partial data and warnings/degraded indicators.",
+                "Enforces strict per-upstream timeouts to bound total client latency."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "prevent-domain-rule-duplication",
+            "prompt": "A client needs to know if an account is eligible for a loan. Should the BFF calculate eligibility from balance rules?",
+            "expected_output": "Refusal to duplicate loan business logic in BFF; calls the core loan service endpoint instead.",
+            "files": [],
+            "assertions": [
+                "BFF delegates business calculation to the loan core service.",
+                "Domain invariants and eligibility rules remain strictly within core service boundaries.",
+                "BFF acts strictly as an adapter/shaper for the client view."
+            ]
+        }
+    ]
+}

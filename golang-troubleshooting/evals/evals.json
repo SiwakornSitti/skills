@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-troubleshooting",
+    "evals": [
+        {
+            "id": 1,
+            "name": "reproduce-race",
+            "prompt": "A test intermittently fails in CI with concurrent map read and map write error. Diagnose and fix it.",
+            "expected_output": "Reproducing the race using go test -race -count=50 and adding sync.RWMutex protection.",
+            "files": [],
+            "assertions": [
+                "Uses 'go test -race' with multiple iterations to consistently reproduce race.",
+                "Identifies unsynchronized concurrent access to Go map.",
+                "Applies sync.RWMutex or sync.Map to eliminate data race."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "goroutine-leak-diagnosis",
+            "prompt": "A service memory usage continuously climbs. pprof shows 50,000 active goroutines blocked on channel send.",
+            "expected_output": "Diagnosis of unbuffered channel send without receiver or missing context cancellation, and fix.",
+            "files": [],
+            "assertions": [
+                "Analyzes pprof goroutine stack trace to identify blocked channel send.",
+                "Adds buffered channel or selects on ctx.Done() to allow sender goroutine to exit.",
+                "Verifies goroutines return to baseline after request completion."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "flaky-test-isolation",
+            "prompt": "An integration test passes when run in isolation but fails when run as part of the full test suite.",
+            "expected_output": "Identification of shared global state, dirty database tables, or port conflicts across tests.",
+            "files": [],
+            "assertions": [
+                "Identifies shared package-level variables or unclean database state as root cause.",
+                "Isolates test state using fresh database schemas, random ports, or mock resets.",
+                "Verifies test passes reliably with 'go test -count=100'."
+            ]
+        }
+    ]
+}

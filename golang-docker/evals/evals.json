@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-docker",
+    "evals": [
+        {
+            "id": 1,
+            "name": "small-go-image",
+            "prompt": "Write a multi-stage Dockerfile for a Go API service producing a minimal, secure production image.",
+            "expected_output": "Multi-stage build with build stage compiling static binary and scratch/distroless runtime stage.",
+            "files": [],
+            "assertions": [
+                "Uses multi-stage Dockerfile with dedicated builder image.",
+                "Compiles static binary with CGO_ENABLED=0 and -ldflags='-w -s'.",
+                "Runtime image is based on scratch or gcr.io/distroless/static-debian12."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "build-cache-optimization",
+            "prompt": "Optimize Dockerfile layers so dependency downloads are cached across source code edits.",
+            "expected_output": "Copying go.mod and go.sum before source files and running go mod download in a separate layer.",
+            "files": [],
+            "assertions": [
+                "Copies go.mod and go.sum prior to copying application source tree.",
+                "Runs go mod download in an isolated cacheable layer.",
+                "Source code copy layer is placed after dependency caching."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "non-root-security",
+            "prompt": "Configure container security in Dockerfile to ensure the Go process does not run as root.",
+            "expected_output": "Creates unprivileged user/group and specifies USER directive, copying ca-certificates.",
+            "files": [],
+            "assertions": [
+                "Creates an unprivileged non-root user (e.g. nonroot:nonroot).",
+                "Declares USER nonroot in the runtime stage.",
+                "Copies /etc/ssl/certs/ca-certificates.crt to allow outgoing HTTPS calls."
+            ]
+        }
+    ]
+}

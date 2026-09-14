@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-validator",
+    "evals": [
+        {
+            "id": 1,
+            "name": "map-validation-errors",
+            "prompt": "Validate a CreateUserRequest struct with go-playground/validator/v10 and map errors to API field violations.",
+            "expected_output": "Validation execution and conversion of validator.ValidationErrors to structured API error response.",
+            "files": [],
+            "assertions": [
+                "Uses validator struct tags (e.g. validate:'required,email').",
+                "Extracts validator.ValidationErrors using errors.As.",
+                "Maps each field error to a clean client message (e.g. 'Email is required')."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "custom-validator-rule",
+            "prompt": "Register a custom validation tag 'iso4217' with validator/v10 to validate 3-letter currency codes.",
+            "expected_output": "Registration of custom validation function using validate.RegisterValidation.",
+            "files": [],
+            "assertions": [
+                "Registers custom validation function using RegisterValidation('iso4217', ...).",
+                "Applies tag on struct field (e.g. Currency string `validate:'required,iso4217'`).",
+                "Unit tests both valid currency codes (USD, EUR) and invalid strings."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "singleton-validator-lifecycle",
+            "prompt": "How should validator.Validate instances be managed across HTTP requests in a high-traffic service?",
+            "expected_output": "Instantiate validator once as a singleton/dependency and reuse it concurrently across all requests.",
+            "files": [],
+            "assertions": [
+                "Reuses a single *validator.Validate instance across all requests.",
+                "Avoids re-instantiating validator inside request handlers.",
+                "Explains that validator caches struct tag analysis and is thread-safe for concurrent use."
+            ]
+        }
+    ]
+}

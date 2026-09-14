@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-performance",
+    "evals": [
+        {
+            "id": 1,
+            "name": "measure-before-optimize",
+            "prompt": "A JSON serialization path is suspected to be slow. How should you profile and benchmark it before making changes?",
+            "expected_output": "Writing a Benchmark function with b.ReportAllocs() and running go test -benchmem -cpuprofile.",
+            "files": [],
+            "assertions": [
+                "Creates table benchmark with b.ResetTimer() and b.ReportAllocs().",
+                "Captures baseline CPU/memory profile with pprof.",
+                "Compares optimization diff using benchstat before committing changes."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "reduce-heap-allocations",
+            "prompt": "Optimize a high-throughput network packet parser that allocates 100,000 byte slices per second.",
+            "expected_output": "Memory optimization using sync.Pool for buffer reuse and pre-allocated slices.",
+            "files": [],
+            "assertions": [
+                "Uses sync.Pool to reuse byte buffer structs across requests.",
+                "Resets buffer state before returning to pool.",
+                "Reduces heap allocations measured by -benchmem to zero or near-zero."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "buffered-batch-io",
+            "prompt": "A logging service writes log lines to disk one-by-one, causing high disk I/O wait. Optimize it.",
+            "expected_output": "Implementation of buffered I/O with bufio.Writer and periodic flush.",
+            "files": [],
+            "assertions": [
+                "Wraps raw file writer with bufio.NewWriterSize.",
+                "Batches write operations to minimize syscall overhead.",
+                "Flushes buffer on timer or shutdown to prevent data loss."
+            ]
+        }
+    ]
+}

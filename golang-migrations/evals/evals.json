@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-migrations",
+    "evals": [
+        {
+            "id": 1,
+            "name": "reversible-schema-change",
+            "prompt": "Create a versioned SQL migration adding an 'accounts' table with balance and status columns.",
+            "expected_output": "Paired up and down SQL migration scripts that are fully reversible.",
+            "files": [],
+            "assertions": [
+                "Provides 00000X_create_accounts_table.up.sql creating the table, constraints, and indexes.",
+                "Provides corresponding .down.sql dropping table cleanly.",
+                "Uses appropriate column types (e.g. numeric/bigint for currency, timestamptz for dates)."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "expand-and-contract",
+            "prompt": "Rename the column 'phone' to 'phone_number' in a 10-million row table without application downtime.",
+            "expected_output": "Three-phase expand-and-contract migration strategy.",
+            "files": [],
+            "assertions": [
+                "Phase 1 (Expand): Add new nullable column 'phone_number' and dual-write in code.",
+                "Phase 2 (Backfill): Backfill data from old column to new column asynchronously.",
+                "Phase 3 (Contract): Switch reads to new column, drop old column in subsequent release."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "lock-timeout-safety",
+            "prompt": "Add an index to a busy production PostgreSQL table in a migration.",
+            "expected_output": "Migration script using CREATE INDEX CONCURRENTLY with lock_timeout safety.",
+            "files": [],
+            "assertions": [
+                "Uses CREATE INDEX CONCURRENTLY in PostgreSQL to avoid table write locks.",
+                "Sets lock_timeout or statement_timeout to prevent blocking production queries.",
+                "Runs outside standard transactional migration blocks when required by driver."
+            ]
+        }
+    ]
+}

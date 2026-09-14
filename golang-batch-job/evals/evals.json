@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-batch-job",
+    "evals": [
+        {
+            "id": 1,
+            "name": "restart-safe-batch",
+            "prompt": "Design a Go batch job that processes 500,000 records from a database with checkpointing for safe restarts.",
+            "expected_output": "A batch processor using keyset/cursor pagination that persists progress after each chunk.",
+            "files": [],
+            "assertions": [
+                "Uses cursor or keyset pagination rather than large OFFSET queries.",
+                "Records checkpoint/offset in durable storage after successful chunk processing.",
+                "Resumes from the last saved checkpoint on process restart."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "bounded-concurrency-backpressure",
+            "prompt": "Implement concurrent record processing in a batch job with bounded memory usage and worker limits.",
+            "expected_output": "Worker pool with bounded channel capacity or semaphore to prevent unbounded goroutine spawning.",
+            "files": [],
+            "assertions": [
+                "Concurrency is strictly bounded using worker pool, semaphore, or errgroup.SetLimit.",
+                "Channel buffer is bounded to provide backpressure against the database cursor.",
+                "Context cancellation is respected to stop feeding workers promptly on failure or SIGTERM."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "isolate-record-failures",
+            "prompt": "In a batch job processing financial transfers, 3 out of 10,000 records have invalid data. How should failures be handled?",
+            "expected_output": "Isolated record-level error handling routing invalid items to dead-letter storage without aborting valid records.",
+            "files": [],
+            "assertions": [
+                "Individual record errors are captured and recorded without crashing the entire batch.",
+                "Valid records within the chunk are processed and committed.",
+                "Summary metrics report total processed, succeeded, and failed item counts."
+            ]
+        }
+    ]
+}

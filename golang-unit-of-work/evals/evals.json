@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-unit-of-work",
+    "evals": [
+        {
+            "id": 1,
+            "name": "atomic-multi-repository-write",
+            "prompt": "Execute a business transaction writing through User, Account, and Audit repositories atomically.",
+            "expected_output": "Unit of Work pattern executing all three repository writes inside a single atomic transaction scope.",
+            "files": [],
+            "assertions": [
+                "Coordinates multiple repositories within one Unit of Work execution context.",
+                "Commits only when all repository operations succeed.",
+                "Rolls back all repository writes if any single operation fails."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "database-agnostic-uow-port",
+            "prompt": "Define a UnitOfWork port interface in hexagonal architecture that domain usecases can invoke.",
+            "expected_output": "A domain-level UnitOfWork interface with an Execute(ctx, func(repoProvider) error) error method.",
+            "files": [],
+            "assertions": [
+                "Port interface lives in domain/usecase layer and does not import sql or driver packages.",
+                "Provides repository instances bound to the transaction inside the closure.",
+                "Decouples domain orchestration from SQL transaction primitives."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "rollback-on-panic",
+            "prompt": "A panic occurs inside a UnitOfWork transaction callback. Ensure the database transaction is not left open.",
+            "expected_output": "UnitOfWork adapter recovering from panic, rolling back transaction, and re-panicking.",
+            "files": [],
+            "assertions": [
+                "Uses recover() in defer block within UnitOfWork execution adapter.",
+                "Executes transaction rollback before propagating panic.",
+                "Re-panics with original value to preserve stack trace and crash behavior."
+            ]
+        }
+    ]
+}

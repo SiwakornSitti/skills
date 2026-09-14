@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-sql",
+    "evals": [
+        {
+            "id": 1,
+            "name": "driver-agnostic-query",
+            "prompt": "Implement a database-agnostic repository interface in Go using *sql.DB and context.",
+            "expected_output": "Clean repository implementation depending on standard database/sql interfaces.",
+            "files": [],
+            "assertions": [
+                "Depends on database/sql standard library interfaces.",
+                "Propagates context.Context to QueryContext and ExecContext.",
+                "Closes rows via defer rows.Close() and checks rows.Err()."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "null-value-handling",
+            "prompt": "Handle nullable string and timestamp database columns in Go repository row scanning.",
+            "expected_output": "Safe scanning using sql.NullString / sql.NullTime or pointer types.",
+            "files": [],
+            "assertions": [
+                "Uses sql.NullString, sql.NullTime, or *string/*time.Time for nullable columns.",
+                "Converts Null types to domain model representation safely.",
+                "Avoids runtime panics when scanning NULL database values."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "transaction-lifecycle-management",
+            "prompt": "Manage transaction execution ensuring rollback on error and proper commit.",
+            "expected_output": "Pattern using db.BeginTx, defer tx.Rollback(), and explicit tx.Commit().",
+            "files": [],
+            "assertions": [
+                "Starts transaction with ctx and txOptions.",
+                "Defers tx.Rollback() immediately to guarantee cleanup on panic or early return.",
+                "Explicitly commits transaction and returns commit error if failed."
+            ]
+        }
+    ]
+}

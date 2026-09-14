@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-observability",
+    "evals": [
+        {
+            "id": 1,
+            "name": "bounded-request-telemetry",
+            "prompt": "Add structured logging and OpenTelemetry tracing middleware to an HTTP router.",
+            "expected_output": "Middleware extracting trace ID from request, starting OpenTelemetry span, and attaching trace ID to slog logger context.",
+            "files": [],
+            "assertions": [
+                "Propagates OpenTelemetry span context across the request lifecycle.",
+                "Injects trace_id and span_id into slog handler attributes.",
+                "Records request duration, path, and HTTP response status code."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "span-attributes-and-events",
+            "prompt": "Record a domain event and domain error on an active OpenTelemetry span during checkout.",
+            "expected_output": "Using span.SetAttributes, span.AddEvent, and span.RecordError with standard semantic conventions.",
+            "files": [],
+            "assertions": [
+                "Sets domain attributes following OpenTelemetry semantic conventions.",
+                "Records errors using span.RecordError and sets span status to Error.",
+                "Avoids storing sensitive data (passwords, card numbers) on span attributes."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "cardinality-safe-metrics",
+            "prompt": "Design a Prometheus counter tracking HTTP request counts in a Go web application.",
+            "expected_output": "Prometheus metric with low-cardinality labels (method, route template, status code).",
+            "files": [],
+            "assertions": [
+                "Uses route template (e.g. /users/{id}) instead of raw URL (/users/12345) to prevent cardinality explosion.",
+                "Does not include user IDs, timestamps, or raw query parameters in labels.",
+                "Labels are restricted to method, route, and status_code."
+            ]
+        }
+    ]
+}

@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-safety",
+    "evals": [
+        {
+            "id": 1,
+            "name": "remove-panic-path",
+            "prompt": "Audit a function with unchecked interface type assertion 'val := obj.(string)' and raw pointer dereferences.",
+            "expected_output": "Replacing panicking code with comma-ok type assertions and explicit nil checks.",
+            "files": [],
+            "assertions": [
+                "Uses comma-ok type assertion 'val, ok := obj.(string)' and handles !ok.",
+                "Checks pointers for nil before dereferencing.",
+                "Returns clean errors instead of triggering runtime panics."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "defensive-slice-copy",
+            "prompt": "An internal domain struct contains a slice of roles. Ensure external callers cannot mutate internal state.",
+            "expected_output": "Getter returning a defensive copy of the slice rather than internal reference.",
+            "files": [],
+            "assertions": [
+                "Allocates a new slice and copies elements with copy().",
+                "Returns the copy to prevent external mutation of internal slice buffer.",
+                "Accepts defensive copy in constructor/setter as well."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "resource-cleanup-defer",
+            "prompt": "Read an HTTP response body and ensure connection and resources are safely closed under all error conditions.",
+            "expected_output": "Correct placement of defer resp.Body.Close() after checking resp != nil and err == nil.",
+            "files": [],
+            "assertions": [
+                "Checks err == nil before accessing resp.Body.",
+                "Defers resp.Body.Close() immediately after error check.",
+                "Drains body with io.Copy(io.Discard, resp.Body) if connection reuse is required."
+            ]
+        }
+    ]
+}

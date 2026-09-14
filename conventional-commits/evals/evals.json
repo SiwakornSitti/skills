@@ -1,0 +1,41 @@
+{
+    "skill_name": "conventional-commits",
+    "evals": [
+        {
+            "id": 1,
+            "name": "choose-commit-type",
+            "prompt": "A Go change fixes a cache stampede and adds tests. Propose a Conventional Commit message and explain the type and scope briefly.",
+            "expected_output": "A valid, specific Conventional Commit message using the appropriate type and scope.",
+            "files": [],
+            "assertions": [
+                "The message follows type(scope): description syntax.",
+                "The type reflects a behavior or implementation change rather than an arbitrary label.",
+                "The description is imperative, concise, and specific."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "breaking-change-footer",
+            "prompt": "A refactoring modifies the public account repository interface, removing deprecated UUID string methods in favor of Go 1.27's native uuid package. Write the commit message.",
+            "expected_output": "A Conventional Commit message marking a breaking change using '!' and a BREAKING CHANGE footer.",
+            "files": [],
+            "assertions": [
+                "The commit header uses '!' after type/scope (e.g. refactor(account)!: ...).",
+                "Includes a 'BREAKING CHANGE:' footer explaining what changed and how callers must adapt.",
+                "Keeps description concise and focused on the interface change."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "reject-vague-commit",
+            "prompt": "Review and fix a commit message that says: 'updates: fix bug and refactor code and update docs'.",
+            "expected_output": "Rejection of the vague multi-purpose commit, splitting into atomic conventional commit messages.",
+            "files": [],
+            "assertions": [
+                "Identifies that multiple distinct changes should be separated into coherent commits.",
+                "Rewrites each part using appropriate types (fix, refactor, docs).",
+                "Ensures descriptions follow imperative lowercase style without vague phrases like 'fix bug'."
+            ]
+        }
+    ]
+}

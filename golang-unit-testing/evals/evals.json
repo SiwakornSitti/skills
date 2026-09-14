@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-unit-testing",
+    "evals": [
+        {
+            "id": 1,
+            "name": "isolated-table-test",
+            "prompt": "Write a table-driven unit test for an email validator function covering valid and invalid formats.",
+            "expected_output": "Table-driven test with struct test cases, t.Run subtests, and clear failure assertions.",
+            "files": [],
+            "assertions": [
+                "Uses table-driven structure (slice of test cases with name, input, expected).",
+                "Executes each test case inside t.Run(tt.name, func(t *testing.T) { ... }).",
+                "Tests edge cases (empty string, missing @, long domains) in isolation."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "mock-outbound-dependencies",
+            "prompt": "Test a user registration service in isolation by mocking its repository dependency.",
+            "expected_output": "Unit test using test doubles or mocks to simulate success and database failure scenarios.",
+            "files": [],
+            "assertions": [
+                "Injects mock repository implementing UserRepository interface.",
+                "Tests business logic without spinning up real database or network listeners.",
+                "Verifies that usecase handles repository error and returns expected domain error."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "test-error-branches",
+            "prompt": "Ensure 100% branch coverage of error conditions in an HTTP handler.",
+            "expected_output": "Subtests for invalid JSON payload, validation error, service failure, and success response.",
+            "files": [],
+            "assertions": [
+                "Tests malformed JSON body returns HTTP 400 Bad Request.",
+                "Tests validation failure returns HTTP 422 / 400 with details.",
+                "Tests internal service error returns HTTP 500."
+            ]
+        }
+    ]
+}

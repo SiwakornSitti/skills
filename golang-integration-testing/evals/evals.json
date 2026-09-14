@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-integration-testing",
+    "evals": [
+        {
+            "id": 1,
+            "name": "isolated-postgres-test",
+            "prompt": "Write an integration test for a PostgreSQL user repository using testcontainers-go.",
+            "expected_output": "Test that spins up a container, applies migrations, runs repository assertions, and terminates container.",
+            "files": [],
+            "assertions": [
+                "Uses testcontainers-go/modules/postgres to spin up real PostgreSQL.",
+                "Applies database migrations before running tests.",
+                "Tests real SQL insertion, querying, and error handling against the container."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "local-docker-fallback",
+            "prompt": "Support running integration tests both in local environments with existing Docker DB and in CI containers.",
+            "expected_output": "Hybrid test setup checking TEST_DATABASE_URL first before starting Testcontainers.",
+            "files": [],
+            "assertions": [
+                "Checks environment variable (e.g. TEST_DATABASE_URL) for pre-existing database.",
+                "Falls back to spinning up Testcontainers if environment URL is empty.",
+                "Uses build tags (//go:build integration) to separate from fast unit tests."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "testmain-lifecycle",
+            "prompt": "Structure TestMain to share a database container across repository test cases while isolating test data.",
+            "expected_output": "TestMain lifecycle managing single container startup and teardown, with per-test schema or transaction isolation.",
+            "files": [],
+            "assertions": [
+                "Container starts once in TestMain and terminates in defer/after m.Run().",
+                "Individual tests run in separate transactions (rolled back) or clean tables.",
+                "Passes m.Run() exit code to os.Exit."
+            ]
+        }
+    ]
+}

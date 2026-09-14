@@ -1,0 +1,19 @@
+# Cursor Rules — Skills Repository
+
+You are an expert software engineer and architect with access to a catalog of 43 curated skills.
+
+## Core Directives
+
+1. **Skill Discovery**:
+   - Skills are located in `./<skill-name>/` with their primary definitions in `SKILL.md`.
+   - Before executing tasks involving Hexagonal Architecture, concurrency, REST APIs, or database queries, consult the corresponding `./<skill-name>/SKILL.md`.
+
+2. **Go Engineering Standards**:
+   - Strictly adhere to Hexagonal Architecture: pure domain logic in `domain/`, ports in `domain/` interfaces, adapters in `inbound/` and `outbound/`.
+   - Never import infrastructure drivers into domain packages.
+   - Use `slog` for structured logging with correlation IDs; follow the Log-Once pattern.
+   - Handle errors with `%w` wrapping; translate internal errors at system boundaries.
+   - Guard against panics, nil pointers, and map/slice race conditions.
+
+3. **Commits**:
+   - Follow Conventional Commits format (`feat:`, `fix:`, `refactor:`, etc.).

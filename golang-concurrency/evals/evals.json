@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-concurrency",
+    "evals": [
+        {
+            "id": 1,
+            "name": "bounded-fanout",
+            "prompt": "Process a slice of 1,000 product IDs concurrently to fetch details from an external API with a max of 10 concurrent requests.",
+            "expected_output": "Bounded worker pool or errgroup with concurrency limit and context cancellation.",
+            "files": [],
+            "assertions": [
+                "Concurrency is bounded to exactly 10 active goroutines.",
+                "Propagates context for cancellation on first error.",
+                "Aggregates results or errors in a thread-safe manner without data races."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "context-cancellation-cleanup",
+            "prompt": "A long-running background worker checks a channel and makes periodic API calls. Ensure clean termination on context cancellation.",
+            "expected_output": "Worker loop with select on ctx.Done() that cleans up resources and exits promptly.",
+            "files": [],
+            "assertions": [
+                "Selects on ctx.Done() across all blocking channel and timer operations.",
+                "Avoids goroutine leaks by terminating when context is canceled.",
+                "Releases open resources or buffers in defer blocks."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "race-safe-state-access",
+            "prompt": "Implement an in-memory rate limiter tracking hit counts per client IP.",
+            "expected_output": "Thread-safe data structure using sync.RWMutex or sync.Map with granular lock duration.",
+            "files": [],
+            "assertions": [
+                "Uses sync.RWMutex with RLock for read checks and Lock for mutations.",
+                "Does not hold lock across external I/O or sleep calls.",
+                "Verified safe under go test -race."
+            ]
+        }
+    ]
+}

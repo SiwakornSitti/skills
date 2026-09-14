@@ -1,13 +1,8 @@
 repos:
-  - repo: local
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
     hooks:
-      - id: golang-lint
-        name: Lint Go
-        entry: make -C golang lint
-        language: system
-        types: [go]
-      - id: golang-test
-        name: Test Go
-        entry: make -C golang test
-        language: system
-        types: [go]
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files

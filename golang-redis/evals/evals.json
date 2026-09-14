@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-redis",
+    "evals": [
+        {
+            "id": 1,
+            "name": "redis-cache-adapter",
+            "prompt": "Implement a caching repository adapter using github.com/redis/go-redis/v9.",
+            "expected_output": "Redis adapter with Get, Set with TTL, and JSON marshaling.",
+            "files": [],
+            "assertions": [
+                "Uses redis.Client with context propagation.",
+                "Serializes domain structs to bytes/JSON with expiration TTL.",
+                "Handles redis.Nil error and translates to domain cache miss."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "distributed-lock-lua",
+            "prompt": "Implement a distributed lock in Redis with TTL and safe atomic release via Lua script.",
+            "expected_output": "Lock acquisition with SetNX and atomic unlock checking token ownership using Lua script.",
+            "files": [],
+            "assertions": [
+                "Uses SetNX with unique lock token and TTL.",
+                "Releases lock via atomic Lua script checking token equality before delete.",
+                "Prevents unlocking someone else's lock if TTL expired during processing."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "redis-pipeline-batch",
+            "prompt": "Fetch 50 user cache keys in a single network round-trip from Redis.",
+            "expected_output": "Batch operation using redis.Pipeline or MGet.",
+            "files": [],
+            "assertions": [
+                "Uses rdb.Pipeline() or rdb.MGet(ctx, keys...).",
+                "Executes all commands in a single network round trip.",
+                "Parses individual command results and handles missing keys gracefully."
+            ]
+        }
+    ]
+}

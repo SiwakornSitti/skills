@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-valkey-pubsub",
+    "evals": [
+        {
+            "id": 1,
+            "name": "reconnect-subscriber",
+            "prompt": "Implement a resilient Valkey Pub/Sub subscriber in Go that reconnects and resubscribes upon network drop.",
+            "expected_output": "A background subscriber loop with backoff retry, channel resubscription, and context cancellation.",
+            "files": [],
+            "assertions": [
+                "Subscribes to channels and processes incoming messages.",
+                "Detects connection drop and reconnects with exponential backoff.",
+                "Automatically resubscribes to target channels after reconnecting."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "handle-slow-consumer",
+            "prompt": "A pub/sub subscriber receives messages faster than it can process them. Prevent memory blowup or dropped connections.",
+            "expected_output": "Using bounded channel buffering, worker pool, and metric tracking for dropped messages.",
+            "files": [],
+            "assertions": [
+                "Buffers incoming messages with bounded internal channel.",
+                "Uses worker pool to process messages concurrently.",
+                "Emits warning telemetry and handles backpressure safely."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "publish-with-timeout",
+            "prompt": "Publish an event notification to a Valkey pub/sub channel with bounded context timeout.",
+            "expected_output": "Publisher calling client.Do(ctx, client.B().Publish().Channel(...).Message(...)) with timeout.",
+            "files": [],
+            "assertions": [
+                "Passes context with timeout to publish operation.",
+                "Handles network errors without crashing caller.",
+                "Recognizes pub/sub is at-most-once delivery."
+            ]
+        }
+    ]
+}

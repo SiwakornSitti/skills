@@ -1,0 +1,41 @@
+{
+    "skill_name": "software-principles",
+    "evals": [
+        {
+            "id": 1,
+            "name": "reject-speculative-abstraction",
+            "prompt": "Review a proposed code change introducing 6 layers of interfaces, factories, and generic decorators for a single PostgreSQL query.",
+            "expected_output": "Application of KISS and YAGNI principles rejecting the over-engineering and simplifying to a direct repository.",
+            "files": [],
+            "assertions": [
+                "Identifies speculative generalizations that violate KISS and YAGNI.",
+                "Recommends simplest working solution that fulfills current requirements.",
+                "Eliminates unnecessary factories, abstract classes, and redundant interfaces."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "functional-core-imperative-shell",
+            "prompt": "Refactor a tax calculation service that mixes database calls, network HTTP requests, and math logic in a single 300-line method.",
+            "expected_output": "Separation of pure tax calculation into a Functional Core and I/O coordination into an Imperative Shell.",
+            "files": [],
+            "assertions": [
+                "Extracts business calculation into pure functions with zero I/O or external dependencies.",
+                "Imperative shell fetches data from database/network and passes plain values to the core.",
+                "Functional core is tested trivially in unit tests with no mocks required."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "apply-single-responsibility",
+            "prompt": "A UserService struct handles user validation, SQL queries, password hashing, JWT token creation, and email notifications.",
+            "expected_output": "Decomposition into cohesive single-responsibility components (PasswordHasher, TokenService, UserNotifier, UserRepository).",
+            "files": [],
+            "assertions": [
+                "Splits bloated service adhering to Single Responsibility Principle (SRP).",
+                "Each component owns one reason to change.",
+                "UserService coordinates domain usecase flow via dependency injection."
+            ]
+        }
+    ]
+}

@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-cache",
+    "evals": [
+        {
+            "id": 1,
+            "name": "cache-aside-stampede",
+            "prompt": "Add cache-aside reads for a hot user key backed by a database. Many requests can miss simultaneously.",
+            "expected_output": "A cache-aside design with bounded TTL, stampede protection, source-of-truth reads, and verification cases.",
+            "files": [],
+            "assertions": [
+                "A cache miss loads from the database and stores the result with a TTL.",
+                "Concurrent misses for one key are coalesced using singleflight.",
+                "Invalidation or refresh behavior after writes is explicit."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "write-invalidation-consistency",
+            "prompt": "A user updates their email. Show how cache invalidation should be coordinated with the database update.",
+            "expected_output": "Database write first followed by explicit cache key deletion/invalidation.",
+            "files": [],
+            "assertions": [
+                "Database update is performed as the authoritative transaction.",
+                "Cache key is explicitly deleted (invalidated) rather than blindly overwritten.",
+                "Handles cache delete failure with appropriate warning logging without rolling back valid DB write."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "resilient-cache-downtime",
+            "prompt": "The Redis cluster experiences network partition. How should repository cache decorators behave?",
+            "expected_output": "Graceful fallback to the underlying database without bubbling Redis connection errors to the caller.",
+            "files": [],
+            "assertions": [
+                "Cache errors are logged as warnings and do not fail the request.",
+                "Repository falls through to the primary database source of truth.",
+                "Circuit breaker or short timeout prevents cache downtime from exhausting DB connection pools."
+            ]
+        }
+    ]
+}

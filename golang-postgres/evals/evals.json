@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-postgres",
+    "evals": [
+        {
+            "id": 1,
+            "name": "safe-pgx-repository",
+            "prompt": "Implement a PostgreSQL user repository FindByID query using pgxpool.",
+            "expected_output": "Parameterized query with '$1' syntax, context timeout, and pgx.CollectOneRow or Scan.",
+            "files": [],
+            "assertions": [
+                "Uses '$1' positional placeholder for parameters.",
+                "Passes context.Context to QueryRow.",
+                "Maps pgx.ErrNoRows to domain ErrNotFound."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "postgres-transaction-uow",
+            "prompt": "Execute an atomic debit and credit across two accounts using pgx.Tx.",
+            "expected_output": "Transaction execution with defer tx.Rollback(ctx) and explicit tx.Commit(ctx).",
+            "files": [],
+            "assertions": [
+                "Begins transaction using pool.Begin(ctx) or BeginTx.",
+                "Defers tx.Rollback(ctx) immediately (ignored if committed).",
+                "Executes both operations within transaction and commits explicitly."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "keyset-pagination",
+            "prompt": "Query transactions page by page in PostgreSQL for an account with millions of transactions.",
+            "expected_output": "Keyset pagination using 'WHERE account_id = $1 AND created_at < $2 ORDER BY created_at DESC LIMIT $3'.",
+            "files": [],
+            "assertions": [
+                "Uses keyset/seek pagination based on indexed column (created_at, id).",
+                "Avoids OFFSET pagination which degrades on deep pages.",
+                "Returns next cursor token to client."
+            ]
+        }
+    ]
+}

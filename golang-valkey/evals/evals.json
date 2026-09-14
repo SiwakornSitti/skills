@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-valkey",
+    "evals": [
+        {
+            "id": 1,
+            "name": "valkey-cache-client",
+            "prompt": "Connect to Valkey using the official valkey-go client and implement key-value caching with TTL.",
+            "expected_output": "Client initialization with valkey.NewClient and executing Set / Get commands with context.",
+            "files": [],
+            "assertions": [
+                "Initializes client using valkey.NewClient(valkey.ClientOption{InitAddress: ...}).",
+                "Executes Set with Expiration using valkey-go builder API.",
+                "Handles cache miss when key does not exist."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "valkey-atomic-operations",
+            "prompt": "Implement an atomic rate-limiter counter with expiration in Valkey.",
+            "expected_output": "Using Valkey pipeline or atomic INCR with EXPIRE.",
+            "files": [],
+            "assertions": [
+                "Executes atomic INCR command.",
+                "Sets TTL on key creation to prevent orphaned counters.",
+                "Returns current count safely."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "valkey-failover-resilience",
+            "prompt": "Configure Valkey client connection timeouts, retries, and circuit breaking for high availability.",
+            "expected_output": "Client options configuration with connection timeout, read/write timeouts, and fallback handling.",
+            "files": [],
+            "assertions": [
+                "Sets DialTimeout and Read/Write timeouts in ClientOption.",
+                "Handles connection failure with graceful fallback to source-of-truth database.",
+                "Prevents Valkey slowness from cascading into thread pool exhaustion."
+            ]
+        }
+    ]
+}

@@ -1,0 +1,41 @@
+{
+    "skill_name": "sensitive-data",
+    "evals": [
+        {
+            "id": 1,
+            "name": "redact-customer-data",
+            "prompt": "Redact customer payment cards, passwords, and tax IDs before logging HTTP request payloads and responses.",
+            "expected_output": "Logging interceptor or marshaler masking sensitive fields using regex or custom struct tags.",
+            "files": [],
+            "assertions": [
+                "Masks credit card numbers showing only last 4 digits (e.g. '****-****-****-1234').",
+                "Completely redacts passwords, CVV codes, and private keys.",
+                "Ensures raw unmasked payloads are never emitted in production logs or traces."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "encrypt-pii-at-rest",
+            "prompt": "Store customer national identification numbers in PostgreSQL while complying with data privacy regulations.",
+            "expected_output": "Application-level envelope encryption before database write and decryption on read.",
+            "files": [],
+            "assertions": [
+                "Encrypts sensitive field at application layer before passing to database.",
+                "Stores encrypted ciphertext and initialization vector / nonce in database column.",
+                "Encryption keys are managed securely and rotated independently of database backups."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "sanitize-test-fixtures",
+            "prompt": "Review integration test fixtures containing real customer names, phone numbers, and live API tokens.",
+            "expected_output": "Replacement with synthetic, anonymized test fixtures using faker or standard dummy values.",
+            "files": [],
+            "assertions": [
+                "Removes real customer names, phone numbers, and emails from test files.",
+                "Replaces live API keys with dummy mock tokens.",
+                "Ensures test repository contains zero production secrets or real PII."
+            ]
+        }
+    ]
+}

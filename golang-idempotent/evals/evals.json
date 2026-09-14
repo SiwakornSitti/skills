@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-idempotent",
+    "evals": [
+        {
+            "id": 1,
+            "name": "retry-safe-post",
+            "prompt": "Design an idempotent POST /payments endpoint that safely handles client network retries.",
+            "expected_output": "Idempotency key handling with atomic acquisition, cached response replay, and conflict protection.",
+            "files": [],
+            "assertions": [
+                "Extracts Idempotency-Key header from incoming request.",
+                "Atomically claims the key in Redis or SQL with in-progress status.",
+                "Stores final response body and headers for replay on duplicate calls."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "replay-cached-result",
+            "prompt": "A client resends a charge request with an existing idempotency key whose transaction already succeeded.",
+            "expected_output": "Returns the previously stored response with identical status code, headers, and body without re-executing charge.",
+            "files": [],
+            "assertions": [
+                "Detects that key is in completed state.",
+                "Replays cached response directly without calling payment gateway.",
+                "Includes an Idempotent-Replayed: true header or equivalent indicator."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "concurrent-duplicate-conflict",
+            "prompt": "Two concurrent HTTP requests arrive simultaneously with the identical Idempotency-Key while processing is in progress.",
+            "expected_output": "Rejection of the second request with HTTP 409 Conflict or waiting on lock release.",
+            "files": [],
+            "assertions": [
+                "Detects concurrent execution via atomic lock/status.",
+                "Returns HTTP 409 Conflict or 425 Too Early to prevent duplicate side effects.",
+                "Avoids duplicate debit or double execution against downstream APIs."
+            ]
+        }
+    ]
+}

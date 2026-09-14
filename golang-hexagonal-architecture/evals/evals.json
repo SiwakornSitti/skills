@@ -1,0 +1,51 @@
+{
+    "skill_name": "golang-hexagonal-architecture",
+    "evals": [
+        {
+            "id": 1,
+            "name": "wire-bounded-context",
+            "prompt": "Wire a modular-monolith user context with HTTP inbound adapters, a PostgreSQL repository, and an outbox publisher.",
+            "expected_output": "Composition-root wiring that keeps domain ports inward and adapters outward.",
+            "files": [
+                "references/wiring.md",
+                "examples/minimal_module/module.go"
+            ],
+            "assertions": [
+                "The domain does not import HTTP, PostgreSQL, or messaging libraries.",
+                "Ports are owned by the consuming core layer and adapters satisfy them.",
+                "Construction happens at the composition root or module boundary."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "anti-corruption-layer",
+            "prompt": "The Order bounded context needs user contact details from the User bounded context. How should they communicate?",
+            "expected_output": "Cross-context communication via an explicit Anti-Corruption Layer (ACL), caller-owned port, DTOs, and boundary adapter.",
+            "files": [
+                "references/cross-context.md",
+                "references/boundaries.md"
+            ],
+            "assertions": [
+                "Order context does not directly import User domain entities.",
+                "An outbound port interface is defined in Order context representing the needed user data.",
+                "An adapter translates between User external data and Order-owned DTOs or domain types.",
+                "The Order usecase does not import User domain entities directly."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "reject-inward-dependency",
+            "prompt": "A developer places SQL queries and pgx driver calls directly inside an internal/user/service domain struct. Fix the architecture.",
+            "expected_output": "Refactoring that extracts repository interface in domain and moves pgx implementation to outbound/repository/db adapter.",
+            "files": [
+                "references/anti-patterns.md",
+                "references/verification.md"
+            ],
+            "assertions": [
+                "Extracts persistence interface into domain port.",
+                "Moves all SQL and driver code into adapter package.",
+                "Ensures domain package imports zero infrastructure libraries."
+            ]
+        }
+    ]
+}

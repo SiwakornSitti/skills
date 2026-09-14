@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-swagger",
+    "evals": [
+        {
+            "id": 1,
+            "name": "regenerate-api-contract",
+            "prompt": "Annotate a CreateUser HTTP handler with swaggo comments for Swagger specification generation.",
+            "expected_output": "Complete swaggo annotations (@Summary, @Description, @Tags, @Accept, @Produce, @Param, @Success).",
+            "files": [],
+            "assertions": [
+                "Includes @Summary, @Description, and @Tags annotations.",
+                "Documents request body payload with @Param linking to DTO struct.",
+                "Documents HTTP 201 Success response with returned model struct."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "document-error-responses",
+            "prompt": "Document error status codes (400 Bad Request, 404 Not Found, 500 Internal Error) for an API handler in swaggo.",
+            "expected_output": "Annotations specifying @Failure 400, 404, 500 linking to AppError response struct.",
+            "files": [],
+            "assertions": [
+                "Annotates @Failure 400 {object} httpserver.ErrorResponse.",
+                "Annotates @Failure 404 {object} httpserver.ErrorResponse.",
+                "Annotates @Failure 500 {object} httpserver.ErrorResponse."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "verify-swagger-sync",
+            "prompt": "Verify and regenerate swagger documentation after modifying HTTP endpoint route contracts.",
+            "expected_output": "Workflow running swag init -g cmd/server/main.go and verifying git diff on docs/.",
+            "files": [],
+            "assertions": [
+                "Runs swag init targeting main entry point.",
+                "Updates docs/docs.go, docs/swagger.json, and docs/swagger.yaml.",
+                "Verifies that generated swagger files are synchronized with code."
+            ]
+        }
+    ]
+}

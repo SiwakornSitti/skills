@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-rest-api-design",
+    "evals": [
+        {
+            "id": 1,
+            "name": "design-list-endpoint",
+            "prompt": "Design a GET /api/v1/users endpoint with pagination, status filtering, and sorting.",
+            "expected_output": "A RESTful endpoint design using Gorilla Mux, standard query params, and envelope response.",
+            "files": [],
+            "assertions": [
+                "Uses query parameters limit and offset (or cursor) with default bounds.",
+                "Returns response envelope with data list and pagination metadata (page, total).",
+                "Handles invalid query parameter values with HTTP 400 Bad Request."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "standard-error-envelope",
+            "prompt": "Design the error response schema for API failures across the microservice.",
+            "expected_output": "Consistent error JSON contract with error code, message, request ID, and optional field violations.",
+            "files": [],
+            "assertions": [
+                "Error payload contains code, message, and correlation request_id.",
+                "Validation errors include a list of field-level violation details.",
+                "Consistent structure across 4xx and 5xx status codes."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "http-status-code-semantics",
+            "prompt": "Map domain outcomes (created, entity not found, invalid state transition, internal failure) to HTTP codes.",
+            "expected_output": "Correct mapping to 201 Created with Location header, 404 Not Found, 409 Conflict / 422, and 500.",
+            "files": [],
+            "assertions": [
+                "Entity creation maps to 201 Created.",
+                "Resource missing maps to 404 Not Found.",
+                "Invalid state transition maps to 409 Conflict or 422 Unprocessable Entity."
+            ]
+        }
+    ]
+}

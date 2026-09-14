@@ -1,0 +1,41 @@
+{
+    "skill_name": "golang-mysql",
+    "evals": [
+        {
+            "id": 1,
+            "name": "safe-mysql-query",
+            "prompt": "Query an order record by ID and status in MySQL using database/sql with context timeout.",
+            "expected_output": "Parameterized query with '?' placeholders, context propagation, and error checking.",
+            "files": [],
+            "assertions": [
+                "Uses '?' placeholders for parameterized query parameters.",
+                "Passes context.Context to QueryRowContext.",
+                "Handles sql.ErrNoRows explicitly and maps to domain not found error."
+            ]
+        },
+        {
+            "id": 2,
+            "name": "deadlock-retry-handling",
+            "prompt": "A high-concurrency MySQL transaction fails with Error 1213 (ER_LOCK_DEADLOCK). Implement retry logic.",
+            "expected_output": "Error inspection for MySQL error number 1213 and exponential backoff retry.",
+            "files": [],
+            "assertions": [
+                "Extracts *mysql.MySQLError and checks error code 1213.",
+                "Retries transaction with bounded attempts and jittered backoff.",
+                "Rolls back failed transaction attempt before retrying."
+            ]
+        },
+        {
+            "id": 3,
+            "name": "connection-pool-tuning",
+            "prompt": "Configure database/sql connection pool parameters for a MySQL production microservice.",
+            "expected_output": "Setting SetMaxOpenConns, SetMaxIdleConns, and SetConnMaxLifetime based on server capacity.",
+            "files": [],
+            "assertions": [
+                "Configures SetMaxOpenConns to avoid exhausting MySQL max_connections.",
+                "Sets SetMaxIdleConns appropriately (typically equal to or slightly lower than MaxOpenConns).",
+                "Sets SetConnMaxLifetime to be shorter than MySQL wait_timeout to prevent dead connection reuse."
+            ]
+        }
+    ]
+}
