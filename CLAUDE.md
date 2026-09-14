@@ -5,12 +5,12 @@ Welcome Claude Code. This repository contains a modular library of **43 engineer
 ## How to Use Skills in Claude Code
 
 When working on user queries or coding tasks:
-1. **Discover Skills**: Skills are accessible natively via `.claude/skills/<skill-name>/SKILL.md` or directly at `./<skill-name>/SKILL.md`.
+1. **Discover Skills**: Skills are accessible natively via `.claude/skills/<skill-name>/SKILL.md` or directly at `./skills/<skill-name>/SKILL.md`.
 2. **Progressive Reading**:
    - Only read the specific `SKILL.md` needed for the immediate query.
-   - Deep-dive into `./<skill-name>/references/` only when resolving intricate edge cases or specific patterns.
+   - Deep-dive into `./skills/<skill-name>/references/` only when resolving intricate edge cases or specific patterns.
 3. **Execution**:
-   - Helper scripts are under `<skill-name>/scripts/` (e.g. `scripts/verify_hexagonal.sh`).
+   - Helper scripts are under `skills/<skill-name>/scripts/` (e.g. `skills/golang-hexagonal-architecture/scripts/verify_hexagonal.sh`).
    - Run verification scripts before finalizing architectural changes.
 
 ---

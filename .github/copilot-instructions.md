@@ -20,4 +20,4 @@ This repository contains a comprehensive set of 43 skills for Go development, He
    - Guard shared state with proper mutexes or channels; test with `-race`.
 
 4. **Skills Reference**:
-   - Each skill directory `./<skill-name>/` contains a `SKILL.md` file and a `references/` directory with specific implementation patterns.
+   - Each skill directory `./skills/<skill-name>/` contains a `SKILL.md` file and a `references/` directory with specific implementation patterns.

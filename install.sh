@@ -4,13 +4,13 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# Detect skill directories (exclude hidden directories and tool configs)
+# Detect skill directories (inside skills/)
 SKILL_DIRS=()
 while IFS= read -r dir; do
-  if [ -f "$SCRIPT_DIR/$dir/SKILL.md" ]; then
+  if [ -f "$SCRIPT_DIR/skills/$dir/SKILL.md" ]; then
     SKILL_DIRS+=("$dir")
   fi
-done < <(find "$SCRIPT_DIR" -maxdepth 1 -mindepth 1 -type d ! -name ".*" -exec basename {} \; | sort)
+done < <(find "$SCRIPT_DIR/skills" -maxdepth 1 -mindepth 1 -type d ! -name ".*" -exec basename {} \; | sort)
 
 print_help() {
   cat <<EOF
@@ -91,7 +91,7 @@ install_skills_to_dir() {
   mkdir -p "$dest_dir"
 
   for skill in "${SKILL_DIRS[@]}"; do
-    local src="$SCRIPT_DIR/$skill"
+    local src="$SCRIPT_DIR/skills/$skill"
     local dst="$dest_dir/$skill"
 
     if [ "$MODE" = "copy" ]; then

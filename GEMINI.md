@@ -8,7 +8,7 @@ Antigravity automatically discovers skills in `.agents/skills/<skill-name>/SKILL
 
 All skills in this repository are mounted under:
 - `.agents/skills/` (workspace discovery)
-- Native subdirectories: `./<skill-name>/`
+- Native subdirectories: `./skills/<skill-name>/`
 
 ## Best Practices
 

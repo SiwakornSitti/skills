@@ -57,63 +57,63 @@ cd skills
 ## 📚 Skills Catalog (43 Skills)
 
 ### 🏛️ Architecture & Domain-Driven Design (DDD)
-- **[`golang-hexagonal-architecture`](./golang-hexagonal-architecture/SKILL.md)**: Implement Hexagonal Architecture (Ports & Adapters) with Bounded Contexts, UseCases, domain isolation, and modular wiring.
-- **[`golang-unit-of-work`](./golang-unit-of-work/SKILL.md)**: Database-agnostic Unit of Work when atomic writes span multiple repositories in a bounded context.
-- **[`golang-transactional-outbox`](./golang-transactional-outbox/SKILL.md)**: Reliable, eventual-consistent asynchronous event publishing across bounded contexts.
-- **[`golang-core-service`](./golang-core-service/SKILL.md)**: Core services owning business capabilities, invariants, and durable side effects behind explicit ports.
-- **[`golang-bff`](./golang-bff/SKILL.md)**: Backend-for-Frontend API orchestration, safe data shaping, and partial failure handling.
+- **[`golang-hexagonal-architecture`](./skills/golang-hexagonal-architecture/SKILL.md)**: Implement Hexagonal Architecture (Ports & Adapters) with Bounded Contexts, UseCases, domain isolation, and modular wiring.
+- **[`golang-unit-of-work`](./skills/golang-unit-of-work/SKILL.md)**: Database-agnostic Unit of Work when atomic writes span multiple repositories in a bounded context.
+- **[`golang-transactional-outbox`](./skills/golang-transactional-outbox/SKILL.md)**: Reliable, eventual-consistent asynchronous event publishing across bounded contexts.
+- **[`golang-core-service`](./skills/golang-core-service/SKILL.md)**: Core services owning business capabilities, invariants, and durable side effects behind explicit ports.
+- **[`golang-bff`](./skills/golang-bff/SKILL.md)**: Backend-for-Frontend API orchestration, safe data shaping, and partial failure handling.
 
 ### 🧩 Clean Code, Idioms & Software Principles
-- **[`golang-idioms`](./golang-idioms/SKILL.md)**: Idiomatic Go naming, interface placement, context propagation, and pointer semantics.
-- **[`software-principles`](./software-principles/SKILL.md)**: SOLID, DRY, KISS, YAGNI, Law of Demeter, and Functional Core / Imperative Shell.
-- **[`twelve-factor`](./twelve-factor/SKILL.md)**: Twelve-Factor App principles (config, stateless processes, port binding, disposability).
-- **[`conventional-commits`](./conventional-commits/SKILL.md)**: Conventional Commit message format and commit validation.
-- **[`golang-safety`](./golang-safety/SKILL.md)**: Panic prevention, nil checks, defensive copying, slice/map ownership, and resource lifecycles.
-- **[`golang-generics`](./golang-generics/SKILL.md)**: Type-safe shared generic operations without leaking abstractions.
-- **[`golang-modernize`](./golang-modernize/SKILL.md)**: Modern Go version upgrades, standard library idioms, and dependency refreshes.
+- **[`golang-idioms`](./skills/golang-idioms/SKILL.md)**: Idiomatic Go naming, interface placement, context propagation, and pointer semantics.
+- **[`software-principles`](./skills/software-principles/SKILL.md)**: SOLID, DRY, KISS, YAGNI, Law of Demeter, and Functional Core / Imperative Shell.
+- **[`twelve-factor`](./skills/twelve-factor/SKILL.md)**: Twelve-Factor App principles (config, stateless processes, port binding, disposability).
+- **[`conventional-commits`](./skills/conventional-commits/SKILL.md)**: Conventional Commit message format and commit validation.
+- **[`golang-safety`](./skills/golang-safety/SKILL.md)**: Panic prevention, nil checks, defensive copying, slice/map ownership, and resource lifecycles.
+- **[`golang-generics`](./skills/golang-generics/SKILL.md)**: Type-safe shared generic operations without leaking abstractions.
+- **[`golang-modernize`](./skills/golang-modernize/SKILL.md)**: Modern Go version upgrades, standard library idioms, and dependency refreshes.
 
 ### 🌐 APIs, Networking & Web
-- **[`golang-rest-api-design`](./golang-rest-api-design/SKILL.md)**: REST endpoints, Gorilla Mux routes, envelope responses, pagination, and error contracts.
-- **[`golang-swagger`](./golang-swagger/SKILL.md)**: Swaggo doc annotations and OpenAPI documentation generation.
-- **[`golang-validator`](./golang-validator/SKILL.md)**: Request validation using `github.com/go-playground/validator/v10`.
-- **[`golang-idempotent`](./golang-idempotent/SKILL.md)**: Idempotency keys, replay prevention, and deduplication across handlers and workers.
-- **[`golang-consumer`](./golang-consumer/SKILL.md)**: Resilient message consumers, at-least-once delivery, bounded concurrency, and DLQs.
-- **[`golang-batch-job`](./golang-batch-job/SKILL.md)**: Batch processing with durable coordination, backpressure, retries, and safe restarts.
+- **[`golang-rest-api-design`](./skills/golang-rest-api-design/SKILL.md)**: REST endpoints, Gorilla Mux routes, envelope responses, pagination, and error contracts.
+- **[`golang-swagger`](./skills/golang-swagger/SKILL.md)**: Swaggo doc annotations and OpenAPI documentation generation.
+- **[`golang-validator`](./skills/golang-validator/SKILL.md)**: Request validation using `github.com/go-playground/validator/v10`.
+- **[`golang-idempotent`](./skills/golang-idempotent/SKILL.md)**: Idempotency keys, replay prevention, and deduplication across handlers and workers.
+- **[`golang-consumer`](./skills/golang-consumer/SKILL.md)**: Resilient message consumers, at-least-once delivery, bounded concurrency, and DLQs.
+- **[`golang-batch-job`](./skills/golang-batch-job/SKILL.md)**: Batch processing with durable coordination, backpressure, retries, and safe restarts.
 
 ### 💾 Databases & Storage
-- **[`golang-sql`](./golang-sql/SKILL.md)**: Driver-agnostic relational SQL, cursor pagination, transactions, and row mapping.
-- **[`golang-postgres`](./golang-postgres/SKILL.md)**: PostgreSQL access with `pgx`, connection pools, and query optimization.
-- **[`golang-mysql`](./golang-mysql/SKILL.md)**: MySQL access with `database/sql`, timeouts, and driver tuning.
-- **[`golang-migrations`](./golang-migrations/SKILL.md)**: Reversible, production-safe schema migrations.
+- **[`golang-sql`](./skills/golang-sql/SKILL.md)**: Driver-agnostic relational SQL, cursor pagination, transactions, and row mapping.
+- **[`golang-postgres`](./skills/golang-postgres/SKILL.md)**: PostgreSQL access with `pgx`, connection pools, and query optimization.
+- **[`golang-mysql`](./skills/golang-mysql/SKILL.md)**: MySQL access with `database/sql`, timeouts, and driver tuning.
+- **[`golang-migrations`](./skills/golang-migrations/SKILL.md)**: Reversible, production-safe schema migrations.
 
 ### ⚡ In-Memory & Caching
-- **[`golang-cache`](./golang-cache/SKILL.md)**: Cache-aside reads, TTLs, invalidation, and stampede prevention.
-- **[`golang-redis`](./golang-redis/SKILL.md)**: Redis operations via `github.com/redis/go-redis/v9` (streams, locks, pub/sub).
-- **[`golang-valkey`](./golang-valkey/SKILL.md)**: Official `github.com/valkey-io/valkey-go` integration and safety.
-- **[`golang-valkey-cluster`](./golang-valkey-cluster/SKILL.md)**: Valkey Cluster hash-slot routing, key tags, and topology refresh.
-- **[`golang-valkey-pubsub`](./golang-valkey-pubsub/SKILL.md)**: Valkey pub/sub subscriber lifecycle and reconnect semantics.
+- **[`golang-cache`](./skills/golang-cache/SKILL.md)**: Cache-aside reads, TTLs, invalidation, and stampede prevention.
+- **[`golang-redis`](./skills/golang-redis/SKILL.md)**: Redis operations via `github.com/redis/go-redis/v9` (streams, locks, pub/sub).
+- **[`golang-valkey`](./skills/golang-valkey/SKILL.md)**: Official `github.com/valkey-io/valkey-go` integration and safety.
+- **[`golang-valkey-cluster`](./skills/golang-valkey-cluster/SKILL.md)**: Valkey Cluster hash-slot routing, key tags, and topology refresh.
+- **[`golang-valkey-pubsub`](./skills/golang-valkey-pubsub/SKILL.md)**: Valkey pub/sub subscriber lifecycle and reconnect semantics.
 
 ### ⏱️ Concurrency, Reliability & Observability
-- **[`golang-concurrency`](./golang-concurrency/SKILL.md)**: Goroutines, channels, worker pools, errgroup, and race avoidance.
-- **[`golang-error-handling`](./golang-error-handling/SKILL.md)**: Error wrapping, custom sentinel errors, and unwrapping.
-- **[`golang-apperror-logging`](./golang-apperror-logging/SKILL.md)**: Log-Once pattern with `slog` and cross-layer boundary translation.
-- **[`golang-observability`](./golang-observability/SKILL.md)**: Structured logging, Prometheus metrics, and OpenTelemetry tracing.
-- **[`golang-troubleshooting`](./golang-troubleshooting/SKILL.md)**: Reproduction workflows, pprof profiles, deadlocks, and race condition debugging.
-- **[`golang-performance`](./golang-performance/SKILL.md)**: Benchmarking, memory allocations, runtime GC, and cgroup limits (`automemlimit`).
+- **[`golang-concurrency`](./skills/golang-concurrency/SKILL.md)**: Goroutines, channels, worker pools, errgroup, and race avoidance.
+- **[`golang-error-handling`](./skills/golang-error-handling/SKILL.md)**: Error wrapping, custom sentinel errors, and unwrapping.
+- **[`golang-apperror-logging`](./skills/golang-apperror-logging/SKILL.md)**: Log-Once pattern with `slog` and cross-layer boundary translation.
+- **[`golang-observability`](./skills/golang-observability/SKILL.md)**: Structured logging, Prometheus metrics, and OpenTelemetry tracing.
+- **[`golang-troubleshooting`](./skills/golang-troubleshooting/SKILL.md)**: Reproduction workflows, pprof profiles, deadlocks, and race condition debugging.
+- **[`golang-performance`](./skills/golang-performance/SKILL.md)**: Benchmarking, memory allocations, runtime GC, and cgroup limits (`automemlimit`).
 
 ### 🧪 Testing & Code Quality
-- **[`golang-unit-testing`](./golang-unit-testing/SKILL.md)**: Isolated unit tests, table-driven tests, and subtests.
-- **[`golang-mockery`](./golang-mockery/SKILL.md)**: Mockery v3 interface double generation and Testify expectations.
-- **[`golang-integration-testing`](./golang-integration-testing/SKILL.md)**: Integration tests with Testcontainers-go and local Docker fallback.
-- **[`golang-lint`](./golang-lint/SKILL.md)**: `golangci-lint` and `depguard` boundary enforcement.
+- **[`golang-unit-testing`](./skills/golang-unit-testing/SKILL.md)**: Isolated unit tests, table-driven tests, and subtests.
+- **[`golang-mockery`](./skills/golang-mockery/SKILL.md)**: Mockery v3 interface double generation and Testify expectations.
+- **[`golang-integration-testing`](./skills/golang-integration-testing/SKILL.md)**: Integration tests with Testcontainers-go and local Docker fallback.
+- **[`golang-lint`](./skills/golang-lint/SKILL.md)**: `golangci-lint` and `depguard` boundary enforcement.
 
 ### 🛡️ Security, Data Privacy & Operations
-- **[`golang-security`](./golang-security/SKILL.md)**: Secure defaults, vulnerability scanning (`govulncheck`), and TLS configurations.
-- **[`sensitive-data`](./sensitive-data/SKILL.md)**: PII, credentials, token redaction in telemetry and logs.
-- **[`golang-crypto`](./golang-crypto/SKILL.md)**: Secure cryptography (AES-GCM, HMAC, bcrypt, key rotation).
-- **[`golang-config-secrets`](./golang-config-secrets/SKILL.md)**: Environment configuration, secret handling, and validation.
-- **[`golang-docker`](./golang-docker/SKILL.md)**: Multi-stage Docker builds, dependency caching, and minimal runtime images.
-- **[`golang-documentation`](./golang-documentation/SKILL.md)**: Standard Go doc comments and architecture references.
+- **[`golang-security`](./skills/golang-security/SKILL.md)**: Secure defaults, vulnerability scanning (`govulncheck`), and TLS configurations.
+- **[`sensitive-data`](./skills/sensitive-data/SKILL.md)**: PII, credentials, token redaction in telemetry and logs.
+- **[`golang-crypto`](./skills/golang-crypto/SKILL.md)**: Secure cryptography (AES-GCM, HMAC, bcrypt, key rotation).
+- **[`golang-config-secrets`](./skills/golang-config-secrets/SKILL.md)**: Environment configuration, secret handling, and validation.
+- **[`golang-docker`](./skills/golang-docker/SKILL.md)**: Multi-stage Docker builds, dependency caching, and minimal runtime images.
+- **[`golang-documentation`](./skills/golang-documentation/SKILL.md)**: Standard Go doc comments and architecture references.
 
 ---
 
@@ -121,8 +121,8 @@ cd skills
 
 ```text
 skills/
-├── .agents/skills/      # Symlinks for Antigravity (AGY) workspace discovery
-├── .claude/skills/      # Symlinks for Claude Code workspace discovery
+├── .agents/skills/      # Symlink to ../skills for Antigravity (AGY) discovery
+├── .claude/skills/      # Symlink to ../skills for Claude Code discovery
 ├── .cursorrules         # Configuration and directives for Cursor IDE
 ├── .github/
 │   └── copilot-instructions.md  # Configuration for GitHub Copilot
@@ -131,12 +131,13 @@ skills/
 ├── GEMINI.md            # Antigravity instructions
 ├── install.sh           # Universal installer script
 ├── README.md            # Repository overview & documentation
-└── <skill-name>/        # Individual skill packages
-    ├── SKILL.md         # Skill definition & frontmatter
-    ├── evals/           # Verification evaluations
-    ├── references/      # Deep-dive documentation & patterns
-    ├── examples/        # Template implementations
-    └── scripts/         # Automated validation scripts
+└── skills/              # Directory wrapping all 43 skill packages
+    └── <skill-name>/    # Individual skill package
+        ├── SKILL.md     # Skill definition & frontmatter
+        ├── evals/       # Verification evaluations
+        ├── references/  # Deep-dive documentation & patterns
+        ├── examples/    # Template implementations
+        └── scripts/     # Automated validation scripts
 ```
 
 ---
